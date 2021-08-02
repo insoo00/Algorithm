@@ -70,6 +70,6 @@ int main()
     SparseMatrix A;
 
     toSparseMatrix(Mat, &A, 5, 5);
-    // printSparseMatrix(A);
+    printSparseMatrix(A);
     printOriginalMatrix(A);
 }
