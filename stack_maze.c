@@ -52,7 +52,7 @@ element pop(StackType *s) {
         exit(1);
     }
     else
-        return s->data[--(s->top)];
+        return s->data[(s->top)--];
 }
 
 element peek(StackType *s) {
