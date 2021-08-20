@@ -1,3 +1,6 @@
 # Data-structure
 
-Data-structure study in 2020
+list
+stack
+queue
+tree
