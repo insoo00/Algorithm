@@ -1,6 +1,6 @@
 # Data-structure
 
-list
-stack
-queue
-tree
+list 
+stack 
+queue 
+tree 
