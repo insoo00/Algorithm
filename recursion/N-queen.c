@@ -1,10 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> //abs()
 
 #define N   8
 
 int cols[N+1];
-
 
 int promising(int h) {
     for(int i=1; i<h; i++) {
