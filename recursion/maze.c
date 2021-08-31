@@ -30,7 +30,7 @@ int findPath(int x, int y) {
     }
     if(maze[x][y]==WALL || maze[x][y]==VISITED)
         return 0;
-    if(x<0 || x >= N || y<0 || y>=N)
+    if(x<0 || x>=N || y<0 || y>=N)
         return 0;
     maze[x][y] = VISITED;
     if(findPath(x-1, y) || findPath(x, y+1) || findPath(x+1, y) || findPath(x, y-1))
