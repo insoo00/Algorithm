@@ -9,31 +9,31 @@ int N = 0;
 void countTeams(int h, int wA, int wB, int wC) {
     //base case
     if(h == N) {
-        if(wA == wB == wC)
+        if((wA == wB) && (wA == wC))
             result++;
-        else
-            return ;
+        return ;
     }
+
     countTeams(h+1, wA + weight[h+1], wB, wC);
     countTeams(h+1, wA , wB + weight[h+1], wC);
     countTeams(h+1, wA , wB, wC + weight[h+1]);
     countTeams(h+1, wA , wB, wC);
-    
-    printf("%d\n", result);
 }
 
 int main() {
     int T;
 
     freopen("input.txt", "r", stdin);
-    printf("%d\n", T);
+    scanf("%d", &T);
 
     for(int i=0; i<T; i++) {
         scanf("%d", &N);
-        for(int j=0; j<=N; j++)
+
+        for(int j=1; j<=N; j++)
             scanf("%d", &weight[j]);
 
-        // countTeams(0, 0, 0, 0);
-        printf("%d %d\n", N, weight[1]);
+        countTeams(0, 0, 0, 0);
+        printf("%d\n", result);
+        result = 0;
     }
 }
