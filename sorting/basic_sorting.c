@@ -1,10 +1,27 @@
 #include <stdio.h>
 
 void selectionSort(int data[], int n) {
-    int i;
-    for(i=n; i<2; i--) {
-        if(data[n] < data[i])
-            data[n] = data[i];
+    int i, j, tmp1, tmp2, index;
+    for(i=n; i>2; i--) {
+        tmp1 = 0;
+        index = 0;
+        for(j=0; j<n; j++) {
+            if(data[j] > tmp1)
+                tmp1 = data[j];
+                index = j;
+        }
+        tmp2 = data[n];
+        data[n] = data[index];
+        data[index] = tmp2;
+    }
+}
+
+void selectionSort(int data[], int n) {
+    int i, j;
+    for(i=n; i>2; i--) {
+        for(j=0; j<n; j++) {
+
+        }
     }
 }
 
