@@ -1,2 +1,5 @@
 # Algorithm
-Study algorithm
+Study algorithm   
+
+recursion
+sortinf
