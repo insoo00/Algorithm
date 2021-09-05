@@ -77,7 +77,6 @@ void insertionSort(int data[], int n)
 
 int main()
 {
-    int i;
     int data[10];
 
     init_sort(data);
