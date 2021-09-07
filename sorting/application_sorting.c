@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void print_sort(char* s, int data[], int n)
 {
@@ -65,7 +66,6 @@ int partition(int data[], int p, int r)
 
 void quickSort(int data[], int p, int r)
 {
-    //퀵 정렬 구현
     int pivot;
     if(p < r) {
         pivot = partition(data, p , r);
@@ -90,4 +90,24 @@ int main()
     quickSort(quickInput, 0, 9);
     print_sort("quickSort", quickInput, 10);
 
+    double timeA, timeB;
+    clock_t start, finish;
+    for(int c=0 ; c<5; c++) {
+        for (i=0; i<100000; i++) {
+            x = rand();
+            mergeInput[i] = x;
+            quickInput[i] = x;
+        }
+    start = clock();
+    mergeSort(mergeInput, 0, 99999, 100000);
+    finish = clock();
+    timeA = ((double)(finish - start)) / CLOCKS_PER_SEC;
+
+    start = clock();
+    quickSort(quickInput, 0, 99999);
+    finish = clock();
+    timeB = ((double)(finish - start)) / CLOCKS_PER_SEC;
+
+    printf("Merge Sort: %lf\t Quick Sort: %lf\n", timeA, timeB);
+    }
 }
