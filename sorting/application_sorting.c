@@ -9,59 +9,37 @@ void print_sort(char* s, int A[], int n)
         printf("%d ", A[i]);
     printf("\n");
 }
-// https://airsbigdata.tistory.com/167
-void merge(int A[], int p, int q, int r)
+
+void merge(int A[], int p, int q, int r, int size)
 {
-    int B[r - p + 1];
+    int B[size];
     int i = p;
     int j = q + 1;
     int k = p;
-    int x;
 
-    printf("merge %d %d %d\n", p, q, r);
-    printf("i: %d, j: %d\n", i, j);
-    printf("A[i]: %d, A[j]: %d\n", A[i], A[j]);
-
-    while (i <= q && j <= r) {
-        if (A[i] <= A[j])
+    while(i<=q && j<=r) {
+        if(A[i] <= A[j]) 
             B[k++] = A[i++];
-        else
+        else 
             B[k++] = A[j++];
     }
-    if (i > q) {
-        for (x = 0; x <= r; x++)
-            B[k++] = A[x];
-    } else {
-        for (x = i; x <= r; x++)
-            B[k++] = A[x];
-    }
-
-    // for (k = 0; k < r - p + 1; k++) {
-    //     printf("for[k]: %d\n", k);
-
-    //     if (A[i] < A[j]) {
-    //         printf("if[k]: %d\n", k);
-    //         B[k] = A[i++];
-    //     } else if (A[i] > A[j]) {
-    //         printf("k: %d\n", k);
-    //         if (j > r)
-    //             B[k] = A[i++];
-    //         else
-    //             B[k] = A[j++];
-    //         printf("merge[%d]: %d\n", k, B[k]);
-    //     }
-    for (k = 0; k < r - p + 1; k++) {
-        A[k] = B[k];
-    }
+    while(i<=q) 
+        B[k++] = A[i++];
+    while(j<=r) 
+        B[k++] = A[j++];
+      
+    for (int x = p; x <= r; x++) 
+        A[x] = B[x];
 }
-void mergeSort(int A[], int p, int r)
+
+void mergeSort(int A[], int p, int r, int size)
 {
     int q;
     if (p < r) {
         q = (p + r) / 2;
-        mergeSort(A, p, q);
-        mergeSort(A, q + 1, r);
-        merge(A, p, q, r);
+        mergeSort(A, p, q, size);
+        mergeSort(A, q + 1, r, size);
+        merge(A, p, q, r, size);
     }
 }
 
@@ -86,7 +64,7 @@ int main()
     print_sort("mergeInput", mergeInput, 10);
     // print_sort("quickInput", quickInput, 10);
 
-    mergeSort(mergeInput, 0, 9);
+    mergeSort(mergeInput, 0, 9, 10);
     print_sort("mergeSort", mergeInput, 10);
 
     // quickSort(quickInput, 0, 9);
