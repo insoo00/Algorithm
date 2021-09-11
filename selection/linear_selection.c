@@ -21,7 +21,7 @@ int partition(int data[], int p, int r)
     return i + 1;
 }
 
-int avg_selction()
+int avg_selction(int data[], int p, int r, int i)
 {
 }
 
@@ -42,6 +42,6 @@ int main()
         worst_data[i] = x;
     }
     x = (rand() % 10);
-    avg_res = avg_selction(avg_data, x);
+    avg_res = avg_selction(avg_data, 0, 9, x);
     worst_res = avg_selction(avg_data, x);
 }
