@@ -1,23 +1,21 @@
-import sys
-from collections import deque
-
-input = sys.stdin.readline
-
 N, K = map(int, input().split())
-MAX_RANGE = 10**5
-visited = [0] * (MAX_RANGE+1)
+MAX = 10**5
 
-def bfs(n):
-    q = deque()
-    q.append(n)
-    while q:
-        current = q.popleft()
+dp = [MAX] * (K+1)
 
-        if current == K:
-            return visited[current]
-        for i in (current-1, current+1, current*2):
-            if 0<=i<=MAX_RANGE and visited[i]==0:
-                visited[i] = visited[current] + 1
-                q.append(i)
+if N >= K:
+    print(N-K)
+    exit()
 
-print(bfs(N))
+for i in range(N):
+    dp[i] = N-i
+
+dp[N] = 0
+
+for i in range(N+1, K+1):
+    if i%2==0:
+        dp[i] = min(dp[i-1], dp[i//2]) + 1
+    else:
+        dp[i] = min(dp[i-1] + 1, dp[(i+1)//2] + 2)
+
+print(dp[K])
