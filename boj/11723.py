@@ -10,10 +10,8 @@ for _ in range(m):
   if c == 'add':
     s.add(int(arr[1]))
   elif c == 'remove':
-    try:
+    if int(arr[1]) in s:
       s.remove(int(arr[1]))
-    except:
-      pass
   elif c == 'check':
     if int(arr[1]) in s:
         print(1)
