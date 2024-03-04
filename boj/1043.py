@@ -1,57 +1,40 @@
-import sys
-input = sys.stdin.readline
+def find_relation_party(trust_party):
+    for idx, party in enumerate(parties):
+        for person in party:
+            if person in trust_party:
+                if not visited[idx]:
+                    trust.update(party)
+                    visited[idx] = True
+                    find_relation_party(party)
+                    break
 
-def find(parent, x):
-    if x != parent[x]:
-        parent[x] = find(parent, parent[x])
+N, M = map(int, input().split())
+trust = list(map(int, input().split()))
+if trust[0] == 0:
+    print(M)
+else:
+    result = 0
+    trust = set(trust[1:])
+    parties = []
+    for _ in range(M):
+        cnt, *party = map(int, input().split())
+        parties.append(party)
+    visited = [False for _ in range(M)]
+    for idx, party in enumerate(parties):
+        for person in party:
+            if person in trust:
+                trust.update(party)
+                visited[idx] = True
+                find_relation_party(party)
+                break
 
-    return parent[x]
+    for party in parties:
+        last_person = party[-1]
+        for person in party:
+            if person in trust:
+                break
+            else:
+                if person == last_person:
+                    result += 1
 
-def union(parent, a, b, know_truth):
-    a = find(parent, a)
-    b = find(parent, b)
-
-    if a in know_truth and b in know_truth:
-        return
-
-    if a in know_truth:
-        parent[b] = a
-    
-    elif b in know_truth:
-        parent[a] = b
-    
-    else:
-        if a < b:
-            parent[b] = a
-        
-        else:
-            parent[a] = b
-
-
-n, m = map(int, input().split())
-know_truth = list(map(int, input().split()))[1:]
-
-parties = []
-parent = list(range(n+1))
-
-for _ in range(m):
-    party_info = list(map(int, input().split()))
-    party_len = party_info[0]
-    party = party_info[1:]
-    
-    for i in range(party_len - 1):
-        union(parent, party[i], party[i+1], know_truth)
-    
-    parties.append(party)
-    
-ans = 0
-for party in parties:
-    for i in range(len(party)):
-        tmp = find(parent, party[i])
-        if tmp in know_truth:
-            break
-    
-    else:
-        ans += 1
-
-print(ans)
+    print(result)
