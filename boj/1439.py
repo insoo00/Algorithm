@@ -1,6 +1,6 @@
 S = input()
 
-flag = -1
+flag = '-1'
 zero_cnt = 0
 one_cnt = 0
 for num in S:
