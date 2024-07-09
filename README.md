@@ -2,4 +2,4 @@
 Study algorithm   
 
 recursion
-sortinf
+sorting
