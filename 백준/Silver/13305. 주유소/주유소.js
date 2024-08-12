@@ -3,12 +3,12 @@ let fs = require("fs");
 let input = fs.readFileSync("/dev/stdin").toString().split("\n");
 
 const n = Number(input[0]);
-const distance = input[1].split(" ").map(Number);
-const cost = input[2].split(" ").map(Number);
+const distance = input[1].split(" ").map(BigInt);
+const cost = input[2].split(" ").map(BigInt);
 
 
-let hasDistance = 0;
-let answer = 0;
+let hasDistance = 0n;
+let answer = 0n;
 
 for (let idx=0; idx<n-1; idx++) {
   if (idx!=0) hasDistance -= distance[idx-1];
@@ -32,4 +32,4 @@ for (let idx=0; idx<n-1; idx++) {
   
 }
 
-console.log(answer);
+console.log(String(answer));
