@@ -1,10 +1,25 @@
-// input값 처리
-const arr = require('fs').readFileSync('/dev/stdin').toString().trim().split('');
+let fs = require("fs");
+// let input = fs.readFileSync("input.txt").toString().trim();
+let input = fs.readFileSync("/dev/stdin").toString().trim();
 
-console.log(solution(arr));
+// let arr = [];
+// for (let i=0; i<input.length; i++) {
+//   arr.push(Number(input[i]));
+// }
 
-function solution(arr) {
-  sorted = arr.sort((a,b) => b - a);  // 내림차순 정렬
+let arr = input.split('');
 
-  return sorted.join('');
-}
+
+arr.sort((a,b) => b-a);
+
+
+console.log(arr.join(""))
+
+// // input값 처리
+// const arr = require('fs').readFileSync('/dev/stdin').toString().trim().split('');
+
+
+
+// sorted = arr.sort((a,b) => b - a);  // 내림차순 정렬
+
+// sorted.join('');
