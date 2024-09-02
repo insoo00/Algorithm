@@ -1,6 +1,4 @@
 function dfs(x, y, depth) {
-  visited[x] = true;
-  // console.log(`x: ${x} y: ${y} depth: ${depth}, visited: ${visited}`);
   if (x == y) {
     answer = depth;
     return;
