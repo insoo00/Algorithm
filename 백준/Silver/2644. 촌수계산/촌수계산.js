@@ -1,4 +1,5 @@
 function dfs(x, y, depth) {
+  visited[x] = true;
   if (x == y) {
     answer = depth;
     return;
