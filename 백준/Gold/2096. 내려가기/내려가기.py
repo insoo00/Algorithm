@@ -1,26 +1,12 @@
-# BOJ 2096
-
-# input
 n = int(input())
-a, b, c = map(int, input().split())
-mx1, mx2, mx3 = a, b, c
-mi1, mi2, mi3 = a, b, c
 
-for i in range(1, n):
-	# 새로 들어온 값
-	x, y, z = (map(int, input().split()))
+initial_left, initial_mid, initial_right = map(int, input().split())
+list_max = [initial_left, initial_mid, initial_right]
+list_min = [initial_left, initial_mid, initial_right]
 
-	# 이전 값 저장
-	t1, t2, t3 = mx1, mx2, mx3
-	# 최대값 갱신
-	mx1 = max(t1 + x, t2 + x)
-	mx2 = max(t1 + y, t2 + y, t3 + y)
-	mx3 = max(t2 + z, t3 + z)
+for _ in range(n-1):
+    left, mid, right = map(int, input().split())
+    list_max = [left+max(list_max[0], list_max[1]), mid+max(list_max), right+max(list_max[1], list_max[2])]
+    list_min = [left+min(list_min[0], list_min[1]), mid+min(list_min), right+min(list_min[1], list_min[2])]
 
-	
-	t1, t2, t3 = mi1, mi2, mi3
-	mi1 = min(t1 + x, t2 + x)
-	mi2 = min(t1 + y, t2 + y, t3 + y)
-	mi3 = min(t2 + z, t3 + z)
-
-print(max(mx1, mx2, mx3), min(mi1, mi2, mi3))
+print(max(list_max), min(list_min))
