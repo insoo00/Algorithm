@@ -11,17 +11,17 @@ for i in range(2, n + 1):
 
 if inputs[0] == '1':
     idx = int(inputs[1])
-    nums = set([i for i in range(1, n+1)])
+    nums = [i for i in range(1, n+1)]
     res = []
     offset = 0
 
-    for length in range(n):
+    while len(res) != n: 
         index = 0
         for num in nums:
             index += 1
-            if idx <= offset + index * dp[n-length-1]:
-                offset += (index -1) * dp[n-length-1]
+            if idx <= offset + index * dp[len(nums)-1]:
                 res.append(num)
+                offset += (index -1) * dp[len(nums)-1]
                 nums.remove(num)
                 break
     print(*res)
