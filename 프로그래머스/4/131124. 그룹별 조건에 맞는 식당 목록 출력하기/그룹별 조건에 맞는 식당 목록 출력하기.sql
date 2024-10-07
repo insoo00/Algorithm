@@ -10,4 +10,3 @@ where b.member_id = (
     limit 1
 )
 order by review_date, review_text;
-
