@@ -1,6 +1,5 @@
 n,m = map(int,input().split())
 graph = []
-visited = [[False] * m for _ in range(n)]
 r,c,d = map(int,input().split())
 
 # 북(0) -> 동(1) -> 남(2) -> 서(3)
@@ -10,7 +9,7 @@ dy = [0,1,0,-1]
 for _ in range(n):
     graph.append(list(map(int,input().split())))
 
-visited[r][c] = True
+graph[r][c] = 2
 cnt = 1
 
 while True:
@@ -22,13 +21,12 @@ while True:
         if nx<0 or nx>=n or ny<0 or ny>=m:
             continue
         if graph[nx][ny] == 0:
-            if not visited[nx][ny]:
-                visited[nx][ny] = True
-                cnt += 1
-                r = nx
-                c = ny
-                cleanup = True
-                break
+            graph[nx][ny] = 2
+            cnt += 1
+            r = nx
+            c = ny
+            cleanup = True
+            break
     if not cleanup:
         if graph[r-dx[d]][c-dy[d]] == 1:
             print(cnt)
