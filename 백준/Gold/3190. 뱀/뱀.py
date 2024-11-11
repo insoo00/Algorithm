@@ -13,20 +13,18 @@ for _ in range(l):
     time, dir = input().split()
     d_info[int(time)] = dir
 
+# 방향
 dx = [0, 1, 0, -1]
 dy = [1, 0, -1, 0]
 d = 0
+
+# 뱀의 머리
 x, y = 0, 0
 field[x][y] = 1
 q = deque([(x, y)])
-cnt = 0
 
-def turn(alpha):
-    global d
-    if alpha == 'L':
-        d = (d - 1) % 4
-    else:
-        d = (d + 1) % 4
+# 현재 시간
+cnt = 0
 
 while True:
     cnt += 1
@@ -41,7 +39,10 @@ while True:
         field[x][y] = 1
         q.append((x, y))
         if cnt in d_info:
-            turn(d_info[cnt])
+            if d_info[cnt] == 'L':
+                d = (d-1)%4
+            else:
+                d = (d+1)%4        
     
     # 사과 없음
     elif field[x][y] == 0:
@@ -50,8 +51,11 @@ while True:
         nx, ny = q.popleft()
         field[nx][ny] = 0
         if cnt in d_info:
-            turn(d_info[cnt])
-        
+            if d_info[cnt] == 'L':
+                d = (d-1)%4
+            else:
+                d = (d+1)%4        
+                
     # 자기자신의 몸과 부딪힘
     else:
         break
