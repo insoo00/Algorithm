@@ -9,7 +9,7 @@ DEVELOPERS_TMP as (
 
 select distinct a.id, a.email, a.first_name, a.last_name
 from DEVELOPERS_TMP as a 
-left join SKILLCODES_TMP as b
-on ((a.skill_code - b.code) >= 0) and ((a.skill_code - b.code) not like '%9%')
+inner join SKILLCODES_TMP as b
+on ((a.skill_code - b.code) not like '%9%')
 where b.category = 'Front End'
 order by a.id;
