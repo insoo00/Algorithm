@@ -1,23 +1,27 @@
-import sys
-
-n, m = map(int,sys.stdin.readline().split())
+N, M = map(int, input().split())
 money = []
-for i in range(n): #사용 금액 입력 받기
-    money.append(int(sys.stdin.readline()))
+for _ in range(N):
+    money.append(int(input()))
 
-start, end = max(money), sum(money)
+start = max(money)
+end = sum(money)
+result = 0
 
-while start <= end: #매개변수 탐색
-    mid = (start + end) // 2 #인출 금액
-    charge = mid #인출 금액
-    count = 1
-    for i in money: 
-        if charge - i < 0: #부족해서 다시 인출
-            count += 1
-            charge = mid
-        charge -= i #사용한 만큼 차감
-    if count > m: #인출 액수 증가 필요
-        start = mid + 1
-    else: #인출 액수 감소 필요
-        end = mid - 1
-print(mid)
+while start <= end:
+    mid = (start+end)//2
+
+    cnt = 0
+    budget = 0
+    for m in money:
+        if budget < m:
+            cnt += 1
+            budget = mid
+        budget -= m
+
+    if cnt <= M:
+        result = mid
+        end = mid-1
+    else:
+        start = mid+1
+
+print(result)
